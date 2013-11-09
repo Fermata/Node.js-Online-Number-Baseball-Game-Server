@@ -1,0 +1,215 @@
+body {
+	width:100%;
+	background: #e2e2e2;
+	padding:0px;
+	margin:0px;
+}
+
+#wrapper {
+	width:100%;
+	height:100%;
+}
+
+#menu {
+	width:100%;
+	height:100%;
+	/* -webkit-filter: blur(10px) grayscale(0.6); */
+}
+
+#logo {
+	width: 200px;
+	height: 55px;
+}
+
+.menu_table{
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	border:none;
+}
+
+.menu_table td{
+	border:none;
+}
+
+.logocell {
+	text-align: center;
+	vertical-align: middle;
+	margin:0px;
+	padding:0px;
+	height:auto;
+}
+
+.buttoncell {
+	text-align: center;
+	vertical-align: middle;
+	height:60px;
+}
+
+.copycell {
+	font-family: "Arial";
+	text-align: center;
+	vertical-align: middle;
+	font-size:12px;
+	color:gray;
+	height:80px;
+}
+
+.copycell a{
+	font-size:12px;
+	color:gray;
+}
+
+#inviteLinkView {
+	display: none;
+	width:280px;
+	height:220px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	padding:10px;
+	margin-left: -150px;
+	margin-top: -125px;
+	background: white;
+	border-radius: 5px;
+}
+
+#inviteLinkView p{
+	font-family:AppleSDGothicNeo, sans-serif; 
+}
+
+.popupTitle {
+	font-family:AppleSDGothicNeo, sans-serif; 
+	color:#34a9da;
+	height:40px;
+	line-height: 30px;
+	border-bottom: 1px solid gray;
+	text-align: center;
+	font-weight: bold;
+}
+
+.popupContent{
+	height:120px;
+}
+
+.popupClose {
+	font-family:AppleSDGothicNeo, sans-serif; 
+	color:#34a9da;
+	height:40px;
+	line-height: 50px;
+	border-top: 1px solid gray;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+
+
+
+
+.katalkButton {
+    
+    -moz-box-shadow:inset 0px 0px 0px 0px #b3b344;
+    -webkit-box-shadow:inset 0px 0px 0px 0px #b3b344;
+    box-shadow:inset 0px 0px 0px 0px #b3b344;
+    
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffff00), color-stop(1, #bdbd07));
+    background:-moz-linear-gradient(top, #ffff00 5%, #bdbd07 100%);
+    background:-webkit-linear-gradient(top, #ffff00 5%, #bdbd07 100%);
+    background:-o-linear-gradient(top, #ffff00 5%, #bdbd07 100%);
+    background:-ms-linear-gradient(top, #ffff00 5%, #bdbd07 100%);
+    background:linear-gradient(to bottom, #ffff00 5%, #bdbd07 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff00', endColorstr='#bdbd07',GradientType=0);
+    
+    background-color:#ffff00;
+    
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    
+    border:1px solid #bdbd6e;
+    
+    display:inline-block;
+    color:#000000;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    width:98%;
+    height:50px;
+    line-height: 50px;
+    text-decoration:none;
+    
+    text-shadow:0px 1px 0px #abab0a;
+    
+}
+.katalkButton:hover {
+    
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bdbd07), color-stop(1, #ffff00));
+    background:-moz-linear-gradient(top, #bdbd07 5%, #ffff00 100%);
+    background:-webkit-linear-gradient(top, #bdbd07 5%, #ffff00 100%);
+    background:-o-linear-gradient(top, #bdbd07 5%, #ffff00 100%);
+    background:-ms-linear-gradient(top, #bdbd07 5%, #ffff00 100%);
+    background:linear-gradient(to bottom, #bdbd07 5%, #ffff00 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bdbd07', endColorstr='#ffff00',GradientType=0);
+    
+    background-color:#bdbd07;
+}
+.katalkButton:active {
+    position:relative;
+    top:1px;
+}
+
+
+.smsButton {
+    
+    -moz-box-shadow:inset 0px 0px 0px 0px #d9fbbe;
+    -webkit-box-shadow:inset 0px 0px 0px 0px #d9fbbe;
+    box-shadow:inset 0px 0px 0px 0px #d9fbbe;
+    
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52));
+    background:-moz-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+    background:-webkit-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+    background:-o-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+    background:-ms-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+    background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52',GradientType=0);
+    
+    background-color:#b8e356;
+    
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    
+    border:1px solid #83c41a;
+    
+    display:inline-block;
+    color:#000000;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    width:98%;
+    height:50px;
+    line-height: 50px;
+    text-decoration:none;
+    
+    text-shadow:0px 1px 0px #86ae47;
+    
+}
+.smsButton:hover {
+    
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a5cc52), color-stop(1, #b8e356));
+    background:-moz-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+    background:-webkit-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+    background:-o-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+    background:-ms-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+    background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5cc52', endColorstr='#b8e356',GradientType=0);
+    
+    background-color:#a5cc52;
+}
+.smsButton:active {
+    position:relative;
+    top:1px;
+}
+
