@@ -1,4 +1,0 @@
-exports.data = {
-	users : {},
-	games : {}
-}

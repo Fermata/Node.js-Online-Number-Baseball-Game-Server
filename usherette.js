@@ -236,7 +236,7 @@ var usherActions =  {
 			var attenderToken = postData.userToken;
 			if(usherUserTokenValidate(attenderId,attenderToken)){
 				var targetGame = postData.gameId; // 접속할 게임
-				if(usherSession.games[targetGame]){
+				if(usherSession.games[targetGame] && usherSession.games[gameId].state != "end"){
 					var targetToken = usherSession.games[targetGame].token;
 					var targetGameType = usherSession.games[targetGame].type;
 					var playerObject = [{"id":attenderId,"score":0, "count":0}];
@@ -249,12 +249,16 @@ var usherActions =  {
 						"gameType" : targetGameType
 					});
 					if(usherSession.games[targetGame].players.length == 2){
-						players.forEach(function(gamerObject){
-						usherWrite(gamerObject.id,{
-							"action" : "PLAYERS_AVAILABLE",
-							"message" : "모든 플레이어가 준비완료되었습니다."
+						usherette.log("게임작업: 클래식 게임 준비. 각자 숫자를 지정하세요.",1,request);
+						usherSession.games[gameId].gameData.number = generatedNumberArray;
+						usherSession.games[gameId].state = "playing";
+						usherSession.games[gameId].players.forEach(function(gamerObject){
+							usherWrite(gamerObject.id,{
+								"action" : "GET_READY",
+								"gameId" : gameId,
+								"message" : "플레이어가 모두 접속했습니다. 각자 4자리 숫자를 선택해주세요.";
+							});
 						});
-					});
 					}
 				}else{
 					usherette.log("게임 '" + targetGame + "' 접속 실패", 5, request);
@@ -286,115 +290,62 @@ var usherActions =  {
 				var gameOptions = usherSession.games[gameId].options;
 				var players = usherSession.games[gameId].players;
 				switch(gameType){
-					case "speedattack":
+					case "classic":
 						switch(taskType){
-							case "ready":
-								var generatedNumberArray = gameWorks.newNumbers();
-								usherette.log("게임작업: 게임 준비. 3초 후에 시작합니다. 숫자는 [" + generatedNumberArray.join() + "]",1,request);
-								usherSession.games[gameId].gameData.number = generatedNumberArray;
-								players.forEach(function(gamerObject){
-									gamerObject.score = 0;
-									gamerObject.count = 0;
-									console.log(gamerObject);
-									usherWrite(gamerObject.id,{
-										"action" : "GET_READY",
-										"gameId" : gameId,
-										"time" : 180,
-										"message" : "게임준비! 3초 후에 시작합니다. 제한시간은 3분 입니다."
-									});
-								});
-								break;
-							case "hit":
+							case "numberset":
+								var me,opponent;
+								if(usherSession.games[gameId].players[0].id == playerId){
+									me = 0;
+									opponent = 1;
+								}else{
+									me = 1;
+									opponent = 0;
+								}
 								var getNumber = [postData.valueA,postData.valueB,postData.valueC,postData.valueD];
-								usherSession.games[gameId].gameData.number = generatedNumberArray;
-								var calcResult = gameWorks.hitCalc(usherSession.games[gameId].gameData.number,getNumber);
+								usherSession.games[gameId].players[me].numbers = getNumber;
+								usherette.log("게임작업: 숫자를 지정했습니다. [" + postData.valueA + postData.valueB + postData.valueC + postData.valueD + "]",1,request);
+								if(usherSession.games[gameId].players[opponent].numbers){
+									usherSession.games[gameId].forEach(function(gamerObject){
+										usherWrite(gamerObject.id,{
+											"action" : "START_GAME",
+											"message" : "두명 모두 숫자를 선택했습니다. 게임이 시작되었습니다."
+										});
+									});
+								}
+							case "hit":
+								var opponent;
+								if(usherSession.games[gameId].players[0].id == playerId){
+									opponent = 1;
+								}else{
+									opponent = 0;
+								}
+								var getNumber = [postData.valueA,postData.valueB,postData.valueC,postData.valueD];
+								var calcResult = gameWorks.hitCalc(usherSession.games[gameId].players[opponent].numbers,getNumber);
 								if(calcResult.strike == 4){
-									var generatedNumberArray = gameWorks.newNumbers();
-									if(usherSession.games[gameId].players[playerId].count == 0){
-										usherette.log(playerId + "가 한방에 맞춤. 새 문제를 시작함.",1,request);
-										usherSession.games[gameId].players[playerId].score += 500;
-										players.forEach(function(gamerObject){
-											gamerObject.count = 0;
-											usherWrite(gamerObject.id,{
-												"action" : "NEW_START",
-												"gameId" : gameId,
-												"playerId" : playerId,
-												"message" : "의 엄청난 한방! 첫 타에 4자리를 모두 맞췄습니다. 새 문제 나갑니다!"
-											});
+									usherette.log(playerId + "가 숫자를 맞춤", 1, request);
+									usherSession.games[gameId].players.forEach(function(gamerObject){
+										gamerObject.count++;
+										var resultMessage = "가 이겼습니다. 게임이 끝났습니다."; 
+										usherWrite(gamerObject.id,{
+											"action" : "GAME_OVER",
+											"playerId" : playerId,
+											"message" : resultMessage
 										});
-										response.end();
-									}else{
-										usherette.log(playerId + "가 승리. 새 문제를 시작함.",1,request);
-										usherSession.games[gameId].players[playerId].score += 100;
-										players.forEach(function(gamerObject){
-											gamerObject.count = 0;
-											usherWrite(gamerObject.id,{
-												"action" : "NEW_START",
-												"gameId" : gameId,
-												"playerId" : playerId,
-												"message" : "의 승리입니다. 새로운 문제가 시작됩니다!"
-											});
-										});
-										response.end();
-									}			
+									});
 								}else{
 									usherette.log(playerId + "는 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크", 1, request);
-									players.forEach(function(gamerObject){
+									usherSession.games[gameId].players.forEach(function(gamerObject){
 										gamerObject.count++;
 										var resultMessage = "이 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크를 쳤습니다."; 
 										usherWrite(gamerObject.id,{
 											"action" : "PLAYER_HIT_RESULT",
 											"gameId" : gameId,
+											"turn" : usherSession.games[gameId].players[opponent].id,
 											"playerId" : playerId,
 											"message" : resultMessage
 										});
 									});
 								}
-								break;
-							case "retry":
-								var generatedNumberArray = gameWorks.newNumbers();
-								usherette.log("게임작업: 게임 재시작준비. 3초 후에 시작합니다. 숫자는 [" + generatedNumberArray.join() + "]",1,request);
-								var currentGame = usherGetGame(gameId);
-								currentGame.gameData.number = generatedNumberArray;
-								players.forEach(function(gamerObject){
-									gamerObject.score = 0;
-									gamerObject.count = 0;
-									usherWrite(gamerObject.id,{
-										"action" : "GET_READY",
-										"gameId" : gameId,
-										"time" : 180,
-										"message" : "게임준비! 3초 후에 시작합니다. 제한시간은 3분 입니다."
-									});
-								});
-								response.end();
-								break;
-							case "timeup":
-								var winnerObject;
-								var winnerMessage;
-								if(players[0].score > players[1].score){
-									winnerObject = players[0];
-									winnerMessage = "가 이겼습니다."
-								}else if(players[0].score < players[1].score){
-									winnerObject = players[1];
-									winnerMessage = "가 이겼습니다."
-								}else{
-									winnerObject = "draw";
-									winnerMessage = "비겼습니다."
-								}
-								usherette.log("게임작업: 게임 시간종료 알림이 도착. 모두에게 게임종료를 알립니다.",4,request);
-								if(winnerObject == "draw"){
-									players.forEach(function(gamerObject){
-										gamerObject.score = 0;
-										gamerObject.count = 0;
-										usherWrite(gamerObject.id,{
-											"action" : "GAMEOVER",
-											"players" : "players",
-											"winnerObject" : winnerObject,
-											"message" : "가 이겼습니다."
-										});
-									});
-								}
-								response.end();
 								break;
 						}
 						break;
@@ -412,14 +363,15 @@ var usherActions =  {
 	endGame : function(request, response){
 		usherPostRequest(request, response, function(postData){
 			if(usherGameTokenValidate(postData.gameId,postData.gameToken)){
-				players.forEach(function(gamerObject){
+				usherSession.games[gameId].players.forEach(function(gamerObject){
 					gamerObject.score = 0;
 					gamerObject.count = 0;
 					usherWrite(gamerObject.id,{
 						"action" : "QUIT",
-						"message" : ""
+						"message" : "상대방이 게임을 나갔습니다."
 					});
 				});
+				delete usherSession.games[gameId];
 			}
 		});
 	},
