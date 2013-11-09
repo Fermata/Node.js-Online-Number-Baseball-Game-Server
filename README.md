@@ -5,13 +5,13 @@ Node.js 기반 온라인 숫자야구 게임서버
 
 서버 실행
 -------------------
-`node usherette.js'
-상세 설정은 "usherette.js"파일 상단에 있습니다.
+`node usherette.js`
+- 상세 설정은 `usherette.js`파일 상단에 있습니다.
 
 클라이언트 접속
 -------------------
-"http://도메인/static/mobile"
-아직 완성되지 않아서 우선 이 경로로 접근합니다.
+`http://도메인/static/mobile`
+- 아직 완성되지 않아서 우선 이 경로로 접근합니다.
 
 Server System Requirements
 -------------------
