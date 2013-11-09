@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>숫자야구</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="apple-touch-icon" href="/static/mobile/web-icon.png">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/mobile/style_game.css">
+		<script type="text/javascript" src="/static/mobile/game.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="input">
+				<input type="tel" id="numberInput" placeholder="여기에 숫자 입력"><div id="confirmSend">확인</div><div id="viewRecord">기록 보기</div>
+			</div>
+			<div id="messages">
+			</div>
+			<div id="records">
+			</div>
+		</div>
+		<iframe src="/session" id="usherController"></iframe>
+	</body>
+</html>
