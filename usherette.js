@@ -163,6 +163,12 @@ var gameWorks = {
 		}else if(z == d){
 			strikes++;
 		}
+		var currentReal,currentHit;
+		for(currentReal=0; currentReal<4; currentReal++){
+			for(currentHit=0; currentHit<4; currentHit++){
+				w
+			}
+		}
 		return {"ball":balls,"strike":strikes};
 	}
 }
@@ -404,12 +410,24 @@ var usherActions =  {
 	},
 
 	endGame : function(request, response){
-
+		usherPostRequest(request, response, function(postData){
+			if(usherGameTokenValidate(postData.gameId,postData.gameToken)){
+				players.forEach(function(gamerObject){
+					gamerObject.score = 0;
+					gamerObject.count = 0;
+					usherWrite(gamerObject.id,{
+						"action" : "QUIT",
+						"message" : ""
+					});
+				});
+			}
+		});
 	},
 
 	link : function(request, response){
-		// 게임을 링크로 시작하는 경우 [http://주소/link/타입/고유값] 형태임
-		usheretteJSON(response, {"link":"hahaha"});
+		usherette.log("게임 참가 시도", 4, request);
+		var fileToLoad = usherWorks.loadFromHostingDir("mobile/index.htm");
+		usherWorks.webResponseStream(fileToLoad,response,request);
 	}
 }
 

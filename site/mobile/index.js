@@ -1,3 +1,5 @@
+var linkBase = "http://192.168.0.18:8080/link/";
+
 document.ontouchmove = function(e) {e.preventDefault()};
 
 (function (window, undefined) {
@@ -94,16 +96,27 @@ document.ontouchmove = function(e) {e.preventDefault()};
 
 
 function inviteKatalk(){
-	kakao.link("talk").send({
-        msg : "우리 숫자야구 게임해요! \n아래 링크를 누르면 게임이 시작됩니다. \n(초대자도 아래 링크로 접속해서 게임을 시작하세요.)",
-        url : "http://baseball.cantto.com/link/133314",
-        appid : "baseball.cantto.com",
-        appver : "2.0",
-        appname : "숫자야구 온라인",
-        type : "link"
-    });
+	$.get('/createGame',function(data){
+		gamelink = linkBase + data.gameroom.id;
+		kakao.link("talk").send({
+	        msg : "우리 숫자야구 게임해요! \n아래 링크를 누르면 게임이 시작됩니다. \n(초대자도 아래 링크로 접속해서 게임을 시작하세요.)",
+	        url : gamelink,
+	        appid : "baseball.thefermata.net",
+	        appver : "2.0",
+	        appname : "숫자야구 온라인",
+	        type : "link"
+	    });
+	});
 }
 
 function inviteLink(){
-	
+	$.get('/createGame',function(data){
+		gamelink = linkBase + data.gameroom.id;
+		$("#gameLinkP").html(gamelink);
+		$("#inviteLinkview").show('fast');
+	});
+}
+
+function inviteClose(){
+	$("#inviteLinkview").hide('fast');
 }

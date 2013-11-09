@@ -8,7 +8,7 @@
 		<link rel="apple-touch-icon" href="/static/mobile/web-icon.png">
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		<script type="text/javascript" src="/static/jquery.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/static/mobile/style.css">
 		<script type="text/javascript" src="/static/mobile/index.js"></script>
 	</head>
@@ -32,8 +32,8 @@
 			</div>
 			<div id="inviteLinkview">
 				<div class="popupTitle">링크 공유</div>
-				<div class="popupContent"><p>아래 링크를 친구에게 보내주세요. 터치하면 클립보드에 복사됩니다. 친구에게 보내 준 후 초대자도 이 링크로 접속하세요.</p></div>
-				<div class="popupClose">게임방으로 가기</div>
+				<div class="popupContent"><p>아래 링크를 친구에게 보내주세요. 터치하면 클립보드에 복사됩니다. <br><br>친구에게 보내 준 후 초대자도 이 링크로 접속하세요.</p><p id="gameLinkP"></p></div>
+				<div class="popupClose" onclick="inviteClose()">닫기</div>
 			</div>
 		</div>
 	</body>
