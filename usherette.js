@@ -94,7 +94,7 @@ function usheretteJSON(response, data){
 }
 
 function usherWRTJ(data){
-	return "<script type='text/javascript'>parent.usherCallback(" + JSON.stringify(data) + ");</script>";
+	return "이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠.사실 적당한 글자수의 문장을 반복문 돌려서 주루룩 쓰면 될 것 같지만 그게 너무 귀찮습니다. 그냥 일단 길쭉길쭉한 별 무의미한 문장을 보내려고합니다. 아 치킨먹고싶다. 역시 치킨은 생명의 양식입니다. 치렐루야. 아 이거 얼마나 써야되는거지 이제 1키로바이트 되지 않았나. 아 진짜 아 못하겠다. 이정도면 렌더링 하겠지. 아 해야지. 혹시 이거 읽은 사람이 있다면 치킨좀 사주세요.<script type='text/javascript'>parent.usherCallback(" + JSON.stringify(data) + ");</script>";
 }
 
 function usherWrite(userId,data){
@@ -192,7 +192,7 @@ var usherActions =  {
 			'Transfer-Encoding' : 'chunked'
 		});
 		var dataInReturn = {"action":"CREATED","id":userId,"token":userToken};
-		response.write("<html><head><meta charset='utf-8'></head><body>");
+		response.write("<html><head><meta charset='utf-8'></head><body>이건 좀 쓸데없는데이터를 미리보냅니다. 그래야 좀 몇몇 맘에 안드는 브라우저들이 렌더링을 하거든요. 1키로바이트정도 미리 보내야 렌더링을 시작한다는데 대체 그게 얼마나 많은 데이터를 필요로 하는건지 알 수가 있어야죠. 사실 적당한 글자수의 문장을 반복문 돌려서 주루룩 쓰면 될 것 같지만 그게 너무 귀찮습니다. 그냥 일단 길쭉길쭉한 별 무의미한 문장을 보내려고합니다. 아 치킨먹고싶다. 역시 치킨은 생명의 양식입니다. 치렐루야. 아 이거 얼마나 써야되는거지 이제 1키로바이트 되지 않았나. 아 진짜 아 못하겠다. 이정도면 렌더링 하겠지. 아 해야지. 혹시 이거 읽은 사람이 있다면 치킨좀 사주세요.");
 		usherWrite(userId, dataInReturn);
 	},
 
@@ -237,7 +237,7 @@ var usherActions =  {
 			var attenderToken = postData.userToken;
 			if(usherUserTokenValidate(attenderId,attenderToken)){
 				var targetGame = postData.gameId; // 접속할 게임
-				if(usherSession.games[targetGame] && usherSession.games[targetGame].state != "end"){
+				if(usherSession.games[targetGame] && usherSession.games[targetGame].state != "end" && usherSession.games[targetGame].players.length < 2){
 					var targetToken = usherSession.games[targetGame].token;
 					var targetGameType = usherSession.games[targetGame].type;
 					var playerObject = [{"id":attenderId,"score":0, "count":0}];
@@ -292,7 +292,7 @@ var usherActions =  {
 				switch(taskType){
 					case "numberset":
 						var me,opponent;
-						if(usherSession.games[gameId].players[0].id == playerId){
+						if(usherSession.games[gameId].players[0][0].id == playerId){
 							me = 0;
 							opponent = 1;
 						}else{
@@ -300,30 +300,33 @@ var usherActions =  {
 							opponent = 0;
 						}
 						var getNumber = [postData.valueA,postData.valueB,postData.valueC,postData.valueD];
-						var msgToUser = "나의 숫자는 [" + postData.valueA + postData.valueB + postData.valueC + postData.valueD + "] 입니다.";
-						usheretteJSON(response,{
+						var msgToUser = "숫자가 저장되었습니다. [" + postData.valueA + postData.valueB + postData.valueC + postData.valueD + "] 입니다.";
+						usherWrite(playerId,{
+							"action" : "NUMBER_SET",
 							"message" : msgToUser
 						});
-						usherSession.games[gameId].players[me].numbers = getNumber;
+						usherSession.games[gameId].players[me][0].numbers = getNumber;
 						usherette.log("게임작업: 숫자를 지정했습니다. [" + postData.valueA + postData.valueB + postData.valueC + postData.valueD + "]",1,request);
-						if(usherSession.games[gameId].players[opponent].numbers){
-							usherSession.games[gameId].forEach(function(gamerObject){
+						console.log(usherSession.games[gameId].players[opponent][0]);
+						if(usherSession.games[gameId].players[opponent][0].numbers != undefined){
+							usherSession.games[gameId].players.forEach(function(gamerObject){
 								usherWrite(gamerObject[0].id,{
 									"action" : "START_GAME",
 									"message" : "두명 모두 숫자를 선택했습니다. 게임이 시작되었습니다."
 								});
 							});
 						}
+						response.end();
 						break;
 					case "hit":
 						var opponent;
-						if(usherSession.games[gameId].players[0].id == playerId){
+						if(usherSession.games[gameId].players[0][0].id == playerId){
 							opponent = 1;
 						}else{
 							opponent = 0;
 						}
 						var getNumber = [postData.valueA,postData.valueB,postData.valueC,postData.valueD];
-						var calcResult = gameWorks.hitCalc(usherSession.games[gameId].players[opponent].numbers,getNumber);
+						var calcResult = gameWorks.hitCalc(usherSession.games[gameId].players[opponent][0].numbers,getNumber);
 						if(calcResult.strike == 4){
 							usherette.log(playerId + "가 숫자를 맞춤", 1, request);
 							usherSession.games[gameId].players.forEach(function(gamerObject){
@@ -335,16 +338,17 @@ var usherActions =  {
 									"message" : resultMessage
 								});
 							});
+							delete usherSession.games[gameId];
 							response.end();
 						}else{
 							usherette.log(playerId + "는 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크", 1, request);
 							usherSession.games[gameId].players.forEach(function(gamerObject){
 								gamerObject.count++;
-								var resultMessage = "이 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크를 쳤습니다."; 
+								var resultMessage = "가 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크를 쳤습니다."; 
 								usherWrite(gamerObject[0].id,{
 									"action" : "PLAYER_HIT_RESULT",
 									"gameId" : gameId,
-									"turn" : usherSession.games[gameId].players[opponent].id,
+									"turn" : usherSession.games[gameId].players[opponent][0].id,
 									"playerId" : playerId,
 									"message" : resultMessage
 								});

@@ -7,6 +7,7 @@ var usherClient = {
 	gameType : "classic",
 	taskType : ""
 };
+var sendEnabled = false;
 
 var usherAction = {
 	"request" : function (target, data,callback){
@@ -32,29 +33,68 @@ function usherCallback(data){
 			});
 			break;
 		case "GET_READY":
-			usherSendEnable();
+			sendEnabled = true;
 			usherMessage(data.message);
 			usherClient.taskType = "numberset";
+			break;
+		case "NUMBER_SET":
+			usherMessage(data.message);
+			break;
+		case "START_GAME":
+			sendEnabled = true;
+			usherClient.taskType = "hit";
+			usherMessage(data.message);
+			break;
+		case "PLAYER_HIT_RESULT":
+			sendEnabled = true;
+			usherClient.taskType = "hit";
+			usherMessage(usherStringWithId(data.playerId) + data.message);
+			break;
+		case "GAME_OVER":
+			usherMessage(usherStringWithId(data.playerId) + data.message);
+			usherClient.taskType = "";
+			sendEnabled = false;
 			break;
 	}
 }
 
-function usherSendEnable(){
-
+function usherStringWithId(data){
+	if(data == usherClient.userId){
+		return "내";
+	}else{
+		return "상대";
+	}
 }
 
+
 function usherSend(){
-	switch(usherClient.taskType){
-		case "numberset":
-			var numarray = document.getElementById("numberInput").value.split("");
-			var dataToSend = {"valueA":numarray[0],"valueB":numarray[1],"valueC":numarray[2],"valueD":numarray[3]};
-			usherAction.request("doGame",dataToSend,function(rdata){
-				console.log(rdata);
-				usherMessage(rdata.message);
-			});
-			break;
-		case "hit":
-			break;
+	if(sendEnabled){
+		var numarray = document.getElementById("numberInput").value.split("");
+		var dataToSend = {"valueA":numarray[0],"valueB":numarray[1],"valueC":numarray[2],"valueD":numarray[3]};
+		var checker = numarray;
+		checker.sort();
+		var last = checker[0];
+		var option = true;
+		for (var i=1; i<checker.length; i++) {
+			if (checker[i] == last){
+				option = false;
+				break;
+			}
+		}
+		if(option){
+		switch(usherClient.taskType){
+				case "numberset":
+					usherAction.request("doGame",dataToSend);
+					break;
+				case "hit":
+					usherAction.request("doGame",dataToSend);
+					break;
+			}
+			sendEnabled = false;
+			document.getElementById("numberInput").value = "";
+		}else{
+			alert("나같으면 이런 숫자는 안쓴다.");
+		}
 	}
 }
 
