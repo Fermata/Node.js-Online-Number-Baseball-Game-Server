@@ -1,4 +1,4 @@
-var linkBase = "http://192.168.0.18:8080/link/";
+var linkBase = "http://domain.com:8080/link/";
 
 document.ontouchmove = function(e) {e.preventDefault()};
 

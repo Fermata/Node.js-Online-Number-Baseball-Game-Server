@@ -288,7 +288,6 @@ var usherActions =  {
 						});
 						usherSession.games[gameId].players[me][0].numbers = getNumber;
 						usherette.log("게임작업: 숫자를 지정했습니다. [" + postData.valueA + postData.valueB + postData.valueC + postData.valueD + "]",1,request);
-						console.log(usherSession.games[gameId].players[opponent][0]);
 						if(usherSession.games[gameId].players[opponent][0].numbers != undefined){
 							usherSession.games[gameId].players.forEach(function(gamerObject){
 								usherWrite(gamerObject[0].id,{
@@ -325,7 +324,7 @@ var usherActions =  {
 							usherette.log(playerId + "는 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크", 1, request);
 							usherSession.games[gameId].players.forEach(function(gamerObject){
 								gamerObject.count++;
-								var resultMessage = "가 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크를 쳤습니다."; 
+								var resultMessage = "가 [" + postData.valueA + postData.valueB + postData.valueC + postData.valueD + "]로 " + calcResult.ball + "볼 " + calcResult.strike + "스트라이크를 쳤습니다."; 
 								usherWrite(gamerObject[0].id,{
 									"action" : "PLAYER_HIT_RESULT",
 									"gameId" : gameId,
