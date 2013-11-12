@@ -124,49 +124,30 @@ function usherPostRequest(request,response,callback){
 
 var gameWorks = {
 	newNumbers : function(){
-		var a, b, c, d;
-		a = Math.floor(Math.random()*10);
-		b=a;c=a;d=a;
-		while(a==b){
-			b=Math.floor(Math.random()*10);
+		var array[4], i,j;
+		for(i=0; i<array.length; i++){
+			array[i] = Math.floor(Math.random()*10);
+			for(j=0; j<i; j++){
+				if(array[i] == array[j]){
+					i--;
+					break;
+				}
+			}
 		}
-		while(c==a||c==b){
-			c=Math.floor(Math.random()*10);
-		}
-		while(d==a||d==b||d==c){
-			d=Math.floor(Math.random()*10);
-		}
-		return [a,b,c,d];
+		return array;
 	},
 
 	hitCalc : function(real,hits){
-		var balls = 0, strikes = 0;
-		var a = real[0], b = real[1]; c = real[2]; d = real[3];
-		var w = hits[0]; x = hits[1]; y = hits[2]; z = hits[3];
-		if(w == b || w == c || w == d){
-			balls++;
-		}else if(w == a){
-			strikes++;
-		}
-		if(x == a || x == c || x == d){
-			balls++;
-		}else if(x == b){
-			strikes++;
-		}
-		if(y == a || y == b || y == d){
-			balls++;
-		}else if(y == c){
-			strikes++;
-		}
-		if(z == a || z == b || z == c){
-			balls++;
-		}else if(z == d){
-			strikes++;
-		}
-		var currentReal,currentHit;
-		for(currentReal=0; currentReal<4; currentReal++){
-			for(currentHit=0; currentHit<4; currentHit++){
-				w
+		var balls = 0, strikes = 0, i,j;
+		for(i=0; i<real.length; i++){
+			for(j=0; j<real.length; j++){
+				if(real[i] == hits[j]){
+					if(i==j){
+						strikes++;
+					}else{
+						balls++;
+					}
+				}
 			}
 		}
 		return {"ball":balls,"strike":strikes};
