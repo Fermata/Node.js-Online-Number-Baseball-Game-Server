@@ -124,7 +124,7 @@ function usherPostRequest(request,response,callback){
 
 var gameWorks = {
 	newNumbers : function(){
-		var array[4], i,j;
+		var array = [,,,], i,j;
 		for(i=0; i<array.length; i++){
 			array[i] = Math.floor(Math.random()*10);
 			for(j=0; j<i; j++){

@@ -1,4 +1,4 @@
-var linkBase = "http://domain.com:8080/link/";
+var linkBase = "http://localhost:8080/link/";
 
 document.ontouchmove = function(e) {e.preventDefault()};
 
